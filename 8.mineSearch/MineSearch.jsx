@@ -254,3 +254,8 @@ const  MineSearch = () => {
 };
 
 export default MineSearch;
+
+// conText API 활용할 때에는  랜더링 부분에 TableContext.Provider 태그 안에 value로 변경될 데이터를 넘겨 주고
+// value에 들어갈 값은 성능 저하를 막기 위해서 꼭 useMemo를 통해 데이터 caching 작업을 필수로 해야 하기!
+// 자식 컴포넌트쪽에서는 useContext를 통해 자식들을 벨류로 전달 받아서 사용할 수 있음 ex) const { } = useContext(컨텍스트 객체 변수로 할당);
+// 단, 성능 저하가 일어나지 않게 자식 컴포턴트 쪽에는 memo 또는 useMemo를 통해 렌더링 횟수를 줄여주는 효과를 적용해줘야함.

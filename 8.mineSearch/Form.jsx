@@ -1,7 +1,7 @@
-import React, { useCallback, useState, useContext } from "react";
+import React, { useCallback, useState, useContext, memo } from "react";
 import { START_GAME, TableContext } from "./MineSearch";
 
-const Form = () => {
+const Form = memo(() => {
    const [row, setRow] = useState(10);     // 세로줄
    const [cell, setCell] = useState(10);   // 가로로 펼처질 칸 개수
    const [mine, setMine] = useState(20);   // 지뢰 개수
@@ -31,6 +31,6 @@ const Form = () => {
          <button onClick={onClickBtn}>시작!</button>
       </div>
    );
-};
+});
 
 export default Form;
