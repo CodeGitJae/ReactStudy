@@ -1,0 +1,29 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>끝말잇기</title>
+    <style>
+        #screen {
+            width: 600px;
+            height: 400px;
+            text-align: center;
+            user-select: none;
+            font-size: 30px;
+        }
+        #screen.waiting {
+            background-color: aqua;
+        }
+        #screen.ready {
+            background-color: red;
+            color: white;
+        }
+        #screen.now {
+            background-color: greenyellow;
+        }
+    </style>
+</head>
+<body>
+<div id="root"></div> <!-- 결과: <div  id="root"<button>Like</button></div> -->
+<script src="./dist/app.js"></script>
+</body>
+</html>

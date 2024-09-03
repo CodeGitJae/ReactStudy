@@ -1,0 +1,79 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>구구단</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // 컴포넌트
+      class GuGuDan extends React.Component {;
+          // 값이 변해야 될 것들은 모두 state로 만듬
+          state = {
+              first: Math.ceil(Math.random() * 9),
+              second: Math.ceil(Math.random() * 9),
+              value: '',
+              result: '',
+          };
+        
+        //  form 태그 값 제출 메서드
+        // 렌더링 태그 안에 함수 부분을 밖으로 빼서 쓸 떄는 꼭 화살표 함수를 사용해야 한다고함.
+        // 이유는: function 을 사용하면 this가 정상적으로 동작을 하지 않기때문이라고함.\
+        // 단순하게 표현하자면, 데이터를 직접 만들어서 넣을때는 무조건 화살표 함수로 처리 해야함.
+        onSubmit = (e) => {
+          e.preventDefault();
+
+          if(parseInt(this.state.value) === this.state.first * this.state.second) {
+            // setState(미래데이터)에 기존 데이터를 넣어야 할 때는 함수를 사용해서 prevState 매개변수 사용 
+            this.setState((prveState) => {
+              return {
+                result: `정답은 ` + prveState.value,
+                first: Math.ceil(Math.random() * 9),
+                second: Math.ceil(Math.random() * 9),
+                value: '',
+              }
+            });
+            this.input.focus();
+          } else {
+            this.setState({
+              result: '땡',
+              value: '',
+            });
+            this.input.focus();
+          }
+        };
+
+        // 인풋 태그 입력될 값 받아주기 위한 메서드
+        onChange = (e) => {
+          this.setState({value: e.target.value});
+        };
+
+        input;
+        onRefInput =(f) => {
+          this.input = f;
+        };
+
+        // 렌더링 
+        render() {
+          console.log("렌더링"); // setState를 사용하면 하나 동작 할때마다 렌더링이 계속 됨 그래서 속도가 느려짐
+          return (
+            <React.Fragment>
+                <div>{this.state.first}곱하기 {this.state.second}는?</div>
+                <form onSubmit={this.onSubmit}>
+                  <input ref={this.onRefInput} type="number" value={this.state.value} onChange={this.onChange}/>
+                  <button type="submit">입력!</button>  
+                </form>
+                <div>{this.state.result}</div>
+            </React.Fragment>
+          );
+        }
+      }
+    </script>
+    <script type="text/babel">
+      ReactDOM.render(<GuGuDan/>, document.querySelector("#root"));
+    </script>
+  </body>
+</html>
