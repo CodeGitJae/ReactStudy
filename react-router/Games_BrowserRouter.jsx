@@ -15,7 +15,7 @@ const  Games = () => {
             <Link to="/game/index">게임 매쳐</Link>
          </div>
          <Routes>
-            <Route path="/*" element={<GameMathcer />} />
+            <Route path="*" element={<GameMathcer />} />
             <Route path="/game/:name/*" element={<GameMathcer />} />
          </Routes>
       </BrowserRouter>
